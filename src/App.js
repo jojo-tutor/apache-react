@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { createRef, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function addMeta(data) {
+  const meta = document.createElement('meta');
+  Object.assign(meta, data)
+  document.getElementsByTagName('head')[0].appendChild(meta);
+}
+
+// https://www.mockapi.io/docs
+
+const App = ()  =>{
+  useEffect(() => {
+    document.title = 'Proof of Concept | Jojo'
+
+    addMeta({
+      name: "Description",
+      content: "This is a proof of concept on how react static assets are served on apache server."
+    })
+
+    addMeta({
+      name: "Keywords",
+      content: "react, apache, php, POC"
+    })
+
+    addMeta({
+      name: "Author",
+      content: "Josaphat Tutor"
+    })
+    
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
     </div>
   );
+}
+
+const Header = () => {
+  return (
+    <h1 className="title">
+      Proof of Concept
+    </h1>
+  )
 }
 
 export default App;
